@@ -2,7 +2,8 @@ name: Build EMPIRE GAME
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -13,24 +14,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup JDK 17
+      - name: Setup JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: '17'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK packages
+      - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
-      - name: Setup Gradle
+      - name: Build APK
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6'
 
-      - name: Build Debug APK
+      - name: Assemble Debug APK
         run: gradle assembleDebug
 
       - name: Upload APK
