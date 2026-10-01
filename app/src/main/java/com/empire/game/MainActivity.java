@@ -39,28 +39,24 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         createUi();
-
         startDataCheck();
     }
 
     private void createUi() {
 
         LinearLayout root = new LinearLayout(this);
-
         root.setOrientation(LinearLayout.VERTICAL);
         root.setGravity(Gravity.CENTER);
         root.setPadding(50, 50, 50, 50);
         root.setBackgroundColor(Color.BLACK);
 
         TextView title = new TextView(this);
-
         title.setText("EMPIRE GAME");
         title.setTextColor(Color.WHITE);
         title.setTextSize(28);
         title.setGravity(Gravity.CENTER);
 
         status = new TextView(this);
-
         status.setText("در حال بررسی دیتا...");
         status.setTextColor(Color.WHITE);
         status.setTextSize(20);
@@ -72,12 +68,10 @@ public class MainActivity extends Activity {
                 null,
                 android.R.attr.progressBarStyleHorizontal
         );
-
         progress.setMax(100);
         progress.setProgress(0);
 
         percent = new TextView(this);
-
         percent.setText("0%");
         percent.setTextColor(Color.WHITE);
         percent.setTextSize(17);
@@ -85,14 +79,12 @@ public class MainActivity extends Activity {
         percent.setPadding(0, 25, 0, 10);
 
         sizeInfo = new TextView(this);
-
         sizeInfo.setText("0 B / 0 B");
         sizeInfo.setTextColor(Color.LTGRAY);
         sizeInfo.setTextSize(14);
         sizeInfo.setGravity(Gravity.CENTER);
 
         root.addView(title);
-
         root.addView(status);
 
         root.addView(
@@ -122,8 +114,7 @@ public class MainActivity extends Activity {
                     sizeInfo.setText("0 B / 0 B");
                 });
 
-                JSONObject manifest =
-                        downloadManifest();
+                JSONObject manifest = downloadManifest();
 
                 JSONArray files =
                         manifest.getJSONArray("files");
@@ -238,6 +229,8 @@ public class MainActivity extends Activity {
                     );
                 }
 
+                final long finalTotalBytes = totalBytes;
+
                 runOnUiThread(() -> {
 
                     progress.setProgress(100);
@@ -248,9 +241,9 @@ public class MainActivity extends Activity {
                     );
 
                     sizeInfo.setText(
-                            formatBytes(totalBytes)
+                            formatBytes(finalTotalBytes)
                                     + " / "
-                                    + formatBytes(totalBytes)
+                                    + formatBytes(finalTotalBytes)
                     );
                 });
 
@@ -450,29 +443,31 @@ public class MainActivity extends Activity {
             return;
         }
 
-        int value =
+        int calculatedValue =
                 (int)
                         ((completed * 100L)
                                 / total);
 
-        if (value > 100) {
-            value = 100;
+        if (calculatedValue > 100) {
+            calculatedValue = 100;
         }
 
-        long finalCompleted = completed;
+        final int finalValue = calculatedValue;
+        final long finalCompleted = completed;
+        final long finalTotal = total;
 
         runOnUiThread(() -> {
 
-            progress.setProgress(value);
+            progress.setProgress(finalValue);
 
             percent.setText(
-                    value + "%"
+                    finalValue + "%"
             );
 
             sizeInfo.setText(
                     formatBytes(finalCompleted)
                             + " / "
-                            + formatBytes(total)
+                            + formatBytes(finalTotal)
             );
         });
     }
@@ -525,9 +520,7 @@ public class MainActivity extends Activity {
         return result.toString();
     }
 
-    private String formatBytes(
-            long bytes
-    ) {
+    private String formatBytes(long bytes) {
 
         if (bytes < 1024) {
             return bytes + " B";
@@ -570,8 +563,6 @@ public class MainActivity extends Activity {
             progress.setProgress(100);
         });
 
-        // مرحله اجرای SA-MP
-        // بعد از تست موفق دانلود دیتا
-        // این قسمت را به کلاینت SA-MP متصل می‌کنیم.
+        // اجرای SA-MP را در مرحله بعد وصل می‌کنیم.
     }
 }
