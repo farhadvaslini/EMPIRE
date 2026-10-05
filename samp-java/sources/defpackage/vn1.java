@@ -1,0 +1,11 @@
+package defpackage;
+
+import android.view.MenuItem;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: /data/data/com.termux/files/home/EMPIRE/samp-client-src/classes.dex */
+public interface vn1 {
+    void h(nn1 nn1Var, MenuItem menuItem);
+
+    void j(nn1 nn1Var, wn1 wn1Var);
+}

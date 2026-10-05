@@ -1,0 +1,50 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: /data/data/com.termux/files/home/EMPIRE/samp-client-src/classes.dex */
+public final /* synthetic */ class t03 implements rs0 {
+    public final /* synthetic */ int f;
+    public final /* synthetic */ int g;
+
+    public /* synthetic */ t03(int i, int i2) {
+        this.f = 2;
+        this.g = i;
+    }
+
+    @Override // defpackage.rs0
+    public final Object f(Object obj, Object obj2) {
+        int i = this.f;
+        dm3 dm3Var = dm3.a;
+        int i2 = this.g;
+        switch (i) {
+            case 0:
+                nv0 nv0Var = (nv0) obj;
+                int iIntValue = ((Integer) obj2).intValue();
+                if (!nv0Var.R(iIntValue & 1, (iIntValue & 3) != 2)) {
+                    nv0Var.U();
+                } else {
+                    mg3.b(oz2.N(2131624225, new Object[]{Integer.valueOf(i2)}, nv0Var), null, 0L, 0L, null, null, 0L, null, 0L, 0, false, 0, 0, null, nv0Var, 0, 0, 262142);
+                }
+                break;
+            case 1:
+                nv0 nv0Var2 = (nv0) obj;
+                int iIntValue2 = ((Integer) obj2).intValue();
+                if (!nv0Var2.R(iIntValue2 & 1, (iIntValue2 & 3) != 2)) {
+                    nv0Var2.U();
+                } else {
+                    mg3.b(oz2.N(2131624212, new Object[]{Integer.valueOf(i2)}, nv0Var2), null, 0L, 0L, null, null, 0L, null, 0L, 0, false, 0, 0, null, nv0Var2, 0, 0, 262142);
+                }
+                break;
+            default:
+                ((Integer) obj2).getClass();
+                g12.s(i2, jo3.y(1), (nv0) obj);
+                break;
+        }
+        return dm3Var;
+    }
+
+    public /* synthetic */ t03(int i, int i2, byte b) {
+        this.f = i2;
+        this.g = i;
+    }
+}

@@ -1,0 +1,188 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: /data/data/com.termux/files/home/EMPIRE/samp-client-src/classes.dex */
+public final class fy {
+    public final long A;
+    public final long B;
+    public final long C;
+    public final long D;
+    public final long E;
+    public final long F;
+    public final long G;
+    public final long H;
+    public final long I;
+    public final long J;
+    public final long K;
+    public final long L;
+    public final long M;
+    public final long N;
+    public final long O;
+    public final long P;
+    public final long Q;
+    public final long R;
+    public final long S;
+    public final long T;
+    public final long U;
+    public final long V;
+    public wp W;
+    public wp X;
+    public wp Y;
+    public wp Z;
+    public final long a;
+    public xr a0;
+    public final long b;
+    public st b0;
+    public final long c;
+    public ut2 c0;
+    public final long d;
+    public kj3 d0;
+    public final long e;
+    public dt e0;
+    public final long f;
+    public m01 f0;
+    public final long g;
+    public m01 g0;
+    public final long h;
+    public ei1 h0;
+    public final long i;
+    public un1 i0;
+    public final long j;
+    public yu1 j0;
+    public final long k;
+    public tv1 k0;
+    public final long l;
+    public rf2 l0;
+    public final long m;
+    public nt2 m0;
+    public final long n;
+    public r43 n0;
+    public final long o;
+    public tb3 o0;
+    public final long p;
+    public se3 p0;
+    public final long q;
+    public final long r;
+    public final long s;
+    public final long t;
+    public final long u;
+    public final long v;
+    public final long w;
+    public final long x;
+    public final long y;
+    public final long z;
+
+    public fy(long j, long j2, long j3, long j4, long j5, long j6, long j7, long j8, long j9, long j10, long j11, long j12, long j13, long j14, long j15, long j16, long j17, long j18, long j19, long j20, long j21, long j22, long j23, long j24, long j25, long j26, long j27, long j28, long j29, long j30, long j31, long j32, long j33, long j34, long j35, long j36, long j37, long j38, long j39, long j40, long j41, long j42, long j43, long j44, long j45, long j46, long j47, long j48) {
+        this.a = j;
+        this.b = j2;
+        this.c = j3;
+        this.d = j4;
+        this.e = j5;
+        this.f = j6;
+        this.g = j7;
+        this.h = j8;
+        this.i = j9;
+        this.j = j10;
+        this.k = j11;
+        this.l = j12;
+        this.m = j13;
+        this.n = j14;
+        this.o = j15;
+        this.p = j16;
+        this.q = j17;
+        this.r = j18;
+        this.s = j19;
+        this.t = j20;
+        this.u = j21;
+        this.v = j22;
+        this.w = j23;
+        this.x = j24;
+        this.y = j25;
+        this.z = j26;
+        this.A = j27;
+        this.B = j28;
+        this.C = j29;
+        this.D = j30;
+        this.E = j31;
+        this.F = j32;
+        this.G = j33;
+        this.H = j34;
+        this.I = j35;
+        this.J = j36;
+        this.K = j37;
+        this.L = j38;
+        this.M = j39;
+        this.N = j40;
+        this.O = j41;
+        this.P = j42;
+        this.Q = j43;
+        this.R = j44;
+        this.S = j45;
+        this.T = j46;
+        this.U = j47;
+        this.V = j48;
+    }
+
+    public final long a() {
+        return this.q;
+    }
+
+    public final long b() {
+        return this.H;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("ColorScheme(primary=");
+        nc2.s(this.a, sb, "onPrimary=");
+        nc2.s(this.b, sb, "primaryContainer=");
+        nc2.s(this.c, sb, "onPrimaryContainer=");
+        long j = this.d;
+        nc2.s(j, sb, "inversePrimary=");
+        nc2.s(this.e, sb, "secondary=");
+        nc2.s(this.f, sb, "onSecondary=");
+        nc2.s(this.g, sb, "secondaryContainer=");
+        nc2.s(this.h, sb, "onSecondaryContainer=");
+        nc2.s(this.i, sb, "tertiary=");
+        nc2.s(this.j, sb, "onTertiary=");
+        nc2.s(this.k, sb, "tertiaryContainer=");
+        nc2.s(this.l, sb, "onTertiaryContainer=");
+        nc2.s(this.m, sb, "background=");
+        nc2.s(this.n, sb, "onBackground=");
+        nc2.s(this.o, sb, "surface=");
+        nc2.s(this.p, sb, "onSurface=");
+        nc2.s(this.q, sb, "surfaceVariant=");
+        nc2.s(this.r, sb, "onSurfaceVariant=");
+        nc2.s(this.s, sb, "surfaceTint=");
+        nc2.s(this.t, sb, "inverseSurface=");
+        nc2.s(this.u, sb, "inverseOnSurface=");
+        nc2.s(this.v, sb, "error=");
+        nc2.s(this.w, sb, "onError=");
+        nc2.s(this.x, sb, "errorContainer=");
+        nc2.s(this.y, sb, "onErrorContainer=");
+        nc2.s(this.z, sb, "outline=");
+        nc2.s(this.A, sb, "outlineVariant=");
+        nc2.s(this.B, sb, "scrim=");
+        nc2.s(this.C, sb, "surfaceBright=");
+        nc2.s(this.D, sb, "surfaceDim=");
+        nc2.s(this.E, sb, "surfaceContainer=");
+        nc2.s(this.F, sb, "surfaceContainerHigh=");
+        nc2.s(this.G, sb, "surfaceContainerHighest=");
+        nc2.s(this.H, sb, "surfaceContainerLow=");
+        nc2.s(this.I, sb, "surfaceContainerLowest=");
+        nc2.s(this.J, sb, "primaryFixed=");
+        nc2.s(this.K, sb, "primaryFixedDim=");
+        nc2.s(this.L, sb, "onPrimaryFixed=");
+        nc2.s(j, sb, "onPrimaryFixedVariant=");
+        nc2.s(this.N, sb, "secondaryFixed=");
+        nc2.s(this.O, sb, "secondaryFixedDim=");
+        nc2.s(this.P, sb, "onSecondaryFixed=");
+        nc2.s(this.Q, sb, "onSecondaryFixedVariant=");
+        nc2.s(this.R, sb, "tertiaryFixed=");
+        nc2.s(this.S, sb, "tertiaryFixedDim=");
+        nc2.s(this.T, sb, "onTertiaryFixed=");
+        nc2.s(this.U, sb, "onTertiaryFixedVariant=");
+        sb.append((Object) wx.i(this.V));
+        sb.append(')');
+        return sb.toString();
+    }
+}

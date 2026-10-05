@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="launcher_cleo_message_imported">
+        <item quantity="other">已导入 %1$d 个 CLEO 文件</item>
+    </plurals>
+    <plurals name="launcher_server_summary">
+        <item quantity="other">%1$d/%2$d 名玩家</item>
+    </plurals>
+</resources>

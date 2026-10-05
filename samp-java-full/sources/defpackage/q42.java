@@ -1,0 +1,33 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: classes.dex */
+public final class q42 extends e52 {
+    public final float c;
+    public final float d;
+
+    public q42(float f, float f2) {
+        super(3);
+        this.c = f;
+        this.d = f2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof q42)) {
+            return false;
+        }
+        q42 q42Var = (q42) obj;
+        return Float.compare(this.c, q42Var.c) == 0 && Float.compare(this.d, q42Var.d) == 0;
+    }
+
+    public final int hashCode() {
+        return Float.hashCode(this.d) + (Float.hashCode(this.c) * 31);
+    }
+
+    public final String toString() {
+        return "MoveTo(x=" + this.c + ", y=" + this.d + ")";
+    }
+}

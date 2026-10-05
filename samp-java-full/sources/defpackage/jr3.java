@@ -1,0 +1,15 @@
+package defpackage;
+
+import android.graphics.Insets;
+import android.graphics.Rect;
+import android.view.View;
+import android.view.WindowInsets;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: classes.dex */
+public abstract class jr3 {
+    public static void a(View view, Rect rect, Rect rect2) {
+        Insets systemWindowInsets = view.computeSystemWindowInsets(new WindowInsets.Builder().setSystemWindowInsets(Insets.of(rect)).build(), rect2).getSystemWindowInsets();
+        rect.set(systemWindowInsets.left, systemWindowInsets.top, systemWindowInsets.right, systemWindowInsets.bottom);
+    }
+}

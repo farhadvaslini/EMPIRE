@@ -1,0 +1,30 @@
+package defpackage;
+
+import java.util.Iterator;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: /data/data/com.termux/files/home/EMPIRE/samp-client-src/classes.dex */
+public final class yj3 implements Iterator, t61 {
+    public final Iterator f;
+    public final /* synthetic */ sc3 g;
+
+    public yj3(sc3 sc3Var) {
+        this.g = sc3Var;
+        this.f = sc3Var.b.iterator();
+    }
+
+    @Override // java.util.Iterator
+    public final boolean hasNext() {
+        return this.f.hasNext();
+    }
+
+    @Override // java.util.Iterator
+    public final Object next() {
+        return this.g.c.h(this.f.next());
+    }
+
+    @Override // java.util.Iterator
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+}

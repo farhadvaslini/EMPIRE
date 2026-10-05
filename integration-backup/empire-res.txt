@@ -1,0 +1,2 @@
+empire_icon.jpg
+styles.xml
