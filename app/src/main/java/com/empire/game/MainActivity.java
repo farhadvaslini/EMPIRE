@@ -408,7 +408,7 @@ public class MainActivity extends Activity {
         Intent intent =
                 new Intent(
                         MainActivity.this,
-                        GameClientActivity.class
+                        top.th1nk.samp.feature.game.GameActivity.class
                 );
 
         intent.putExtra(
@@ -419,6 +419,11 @@ public class MainActivity extends Activity {
         intent.putExtra(
                 "server_port",
                 7777
+        );
+
+        intent.putExtra(
+                "nickname",
+                "EMPIRE_Player"
         );
 
         startActivity(intent);

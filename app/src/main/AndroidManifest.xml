@@ -12,6 +12,15 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:theme="@style/GameActivityTheme"
+            android:name="top.th1nk.samp.feature.game.GameActivity"
+            android:exported="false"
+            android:process=":game"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
+            android:hardwareAccelerated="true" />
+
+        <activity
             android:name=".GameClientActivity"
             android:screenOrientation="landscape"
             android:exported="false" />

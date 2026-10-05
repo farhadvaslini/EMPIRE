@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="launcher_cleo_message_imported">
+        <item quantity="one">Импортирован %1$d файл CLEO</item>
+        <item quantity="few">Импортировано %1$d файла CLEO</item>
+        <item quantity="many">Импортировано %1$d файлов CLEO</item>
+        <item quantity="other">Импортировано файлов CLEO: %1$d</item>
+    </plurals>
+    <plurals name="launcher_server_summary">
+        <item quantity="one">%1$d/%2$d игрок</item>
+        <item quantity="few">%1$d/%2$d игрока</item>
+        <item quantity="many">%1$d/%2$d игроков</item>
+        <item quantity="other">%1$d/%2$d игрока</item>
+    </plurals>
+</resources>

@@ -1,0 +1,23 @@
+package defpackage;
+
+import java.io.Serializable;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: classes.dex */
+public abstract class u71 implements bt0, Serializable {
+    public final int f;
+
+    public u71(int i) {
+        this.f = i;
+    }
+
+    @Override // defpackage.bt0
+    public final int c() {
+        return this.f;
+    }
+
+    public final String toString() {
+        rk2.a.getClass();
+        return sk2.a(this);
+    }
+}

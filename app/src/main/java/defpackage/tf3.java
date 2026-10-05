@@ -1,0 +1,18 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: classes.dex */
+public final class tf3 implements jy1 {
+    public final /* synthetic */ sf3 a;
+    public final /* synthetic */ boolean b;
+
+    public tf3(sf3 sf3Var, boolean z) {
+        this.a = sf3Var;
+        this.b = z;
+    }
+
+    @Override // defpackage.jy1
+    public final long a() {
+        return this.a.l(this.b);
+    }
+}

@@ -1,0 +1,18 @@
+package defpackage;
+
+/* JADX INFO: compiled from: r8-map-id-6c0b98a496b39c94623be7f94db3802dc9fd57238d8c9cafbc19343a9e5954ee */
+/* JADX INFO: loaded from: classes.dex */
+public final class yc1 {
+    public final Object a;
+    public final Object b;
+    public int c;
+    public d00 d;
+    public final /* synthetic */ zc1 e;
+
+    public yc1(zc1 zc1Var, int i, Object obj, Object obj2) {
+        this.e = zc1Var;
+        this.a = obj;
+        this.b = obj2;
+        this.c = i;
+    }
+}
