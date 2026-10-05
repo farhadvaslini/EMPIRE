@@ -5,7 +5,7 @@
 
     <application
         android:theme="@style/AppTheme"
-        android:label="EMPIRE GAME"
+        android:label="EG:SA"
         android:icon="@drawable/empire_icon"
         android:allowBackup="false"
         android:supportsRtl="true"
