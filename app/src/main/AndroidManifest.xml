@@ -3,6 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <package android:name="top.th1nk.samp" />
+    </queries>
+
     <application
         android:theme="@style/AppTheme"
         android:label="EMPIRE GAME"

@@ -554,15 +554,33 @@ public class MainActivity extends Activity {
     private void prepareGame() {
 
         runOnUiThread(() -> {
-
-            status.setText(
-                    "آماده‌سازی بازی..."
-            );
-
+            status.setText("در حال اجرای SA-MP...");
             percent.setText("100%");
             progress.setProgress(100);
         });
 
-        // اجرای SA-MP را در مرحله بعد وصل می‌کنیم.
+        try {
+            android.content.Intent intent =
+                    getPackageManager().getLaunchIntentForPackage("top.th1nk.samp");
+
+            if (intent == null) {
+                runOnUiThread(() ->
+                        status.setText("SA-MP روی دستگاه نصب نیست.")
+                );
+                return;
+            }
+
+            intent.putExtra("server_host", "85.133.205.240");
+            intent.putExtra("server_port", 7777);
+            intent.putExtra("server_password", "");
+            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+        } catch (Exception e) {
+            runOnUiThread(() ->
+                    status.setText("خطا در اجرای SA-MP: " + e.getMessage())
+            );
+        }
     }
 }
