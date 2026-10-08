@@ -3,16 +3,21 @@ package com.empire.game;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GameClientActivity extends Activity {
 
+    static {
+        System.loadLibrary("empireclient");
+    }
+
     private TextView status;
+
+    private native String nativeGetStatus();
+    private native boolean nativeStartClient();
+    private native void nativeStopClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,13 @@ public class GameClientActivity extends Activity {
 
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.BLACK);
+
+        String host = getIntent().getStringExtra("server_host");
+        int port = getIntent().getIntExtra("server_port", 7777);
+
+        if (host == null) {
+            host = "85.133.205.240";
+        }
 
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
@@ -30,55 +42,41 @@ public class GameClientActivity extends Activity {
         TextView title = new TextView(this);
         title.setText("EMPIRE GAME");
         title.setTextColor(Color.WHITE);
-        title.setTextSize(32);
-        title.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        title.setTextSize(30);
         title.setGravity(Gravity.CENTER);
 
         TextView server = new TextView(this);
-        server.setText("85.133.205.240:7777");
+        server.setText(
+                "سرور\n" +
+                host + ":" + port
+        );
         server.setTextColor(Color.LTGRAY);
-        server.setTextSize(16);
+        server.setTextSize(17);
         server.setGravity(Gravity.CENTER);
-        server.setPadding(0, 20, 0, 30);
+        server.setPadding(0, 30, 0, 30);
 
         status = new TextView(this);
-        status.setText("کلاینت آماده است");
+        status.setText(nativeGetStatus());
         status.setTextColor(Color.WHITE);
         status.setTextSize(18);
         status.setGravity(Gravity.CENTER);
-        status.setPadding(0, 20, 0, 30);
-
-        Button play = new Button(this);
-        play.setText("ورود به بازی");
-        play.setTextSize(17);
-
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                status.setText(
-                    "در حال اتصال به EMPIRE GAME...\n" +
-                    "85.133.205.240:7777"
-                );
-
-                play.setEnabled(false);
-            }
-        });
 
         root.addView(title);
-
         root.addView(server);
-
         root.addView(status);
 
-        root.addView(
-            play,
-            new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                70
-            )
-        );
-
         setContentView(root);
+
+        boolean started = nativeStartClient();
+
+        if (started) {
+            status.setText(nativeGetStatus());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        nativeStopClient();
+        super.onDestroy();
     }
 }
