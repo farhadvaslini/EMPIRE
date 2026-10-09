@@ -1,52 +1,15 @@
 #include <jni.h>
-#include <android/log.h>
-#include <atomic>
+#include <string>
 
-#define LOG_TAG "EMPIRE_CLIENT"
-
-static std::atomic<bool> running(false);
-
-extern "C"
-JNIEXPORT jstring JNICALL
-Java_com_empire_game_GameClientActivity_nativeGetStatus(
-        JNIEnv* env,
-        jobject) {
-
-    const char* status = running
-        ? "هسته کلاینت فعال است"
-        : "هسته کلاینت آماده است";
-
-    return env->NewStringUTF(status);
-}
-
-extern "C"
-JNIEXPORT jboolean JNICALL
-Java_com_empire_game_GameClientActivity_nativeStartClient(
-        JNIEnv* env,
-        jobject) {
-
-    running = true;
-
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        LOG_TAG,
-        "EMPIRE CLIENT STARTED - 85.133.205.240:7777"
-    );
-
-    return JNI_TRUE;
-}
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_empire_game_GameClientActivity_nativeStopClient(
-        JNIEnv* env,
-        jobject) {
-
-    running = false;
-
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        LOG_TAG,
-        "EMPIRE CLIENT STOPPED"
-    );
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_empire_game_GameClientActivity_nativeStatus(
+        JNIEnv* env, jobject, jstring host, jint port, jstring nickname) {
+    const char* h = env->GetStringUTFChars(host, nullptr);
+    const char* n = env->GetStringUTFChars(nickname, nullptr);
+    std::string out = "Client Core Ready\nServer: " + std::string(h) + ":" + std::to_string((int)port) +
+                       "\nNickname: " + std::string(n) +
+                       "\nWaiting for authorized game engine";
+    env->ReleaseStringUTFChars(host, h);
+    env->ReleaseStringUTFChars(nickname, n);
+    return env->NewStringUTF(out.c_str());
 }

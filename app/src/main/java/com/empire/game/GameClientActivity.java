@@ -7,36 +7,38 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class GameClientActivity extends Activity {
+/** Original EMPIRE GAME integration layer.
+ * The authorized native game engine/client is loaded separately when supplied.
+ */
+public final class GameClientActivity extends Activity {
+    private TextView status;
+    private String host;
+    private int port;
+    private String nickname;
 
     static {
-        System.loadLibrary("empireclient");
+        try { System.loadLibrary("empireclient"); } catch (UnsatisfiedLinkError ignored) { }
     }
 
-    private TextView status;
+    private static native String nativeStatus(String host, int port, String nickname);
 
-    private native String nativeGetStatus();
-    private native boolean nativeStartClient();
-    private native void nativeStopClient();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    @Override protected void onCreate(Bundle state) {
+        super.onCreate(state);
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.BLACK);
+        host = getIntent().getStringExtra("server_host");
+        port = getIntent().getIntExtra("server_port", 7777);
+        nickname = getIntent().getStringExtra("nickname");
+        if (host == null) host = "85.133.205.240";
+        if (nickname == null) nickname = "Player";
+        buildUi();
+    }
 
-        String host = getIntent().getStringExtra("server_host");
-        int port = getIntent().getIntExtra("server_port", 7777);
-
-        if (host == null) {
-            host = "85.133.205.240";
-        }
-
+    private void buildUi() {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setGravity(Gravity.CENTER);
-        root.setPadding(40, 40, 40, 40);
+        root.setPadding(48, 48, 48, 48);
         root.setBackgroundColor(Color.BLACK);
 
         TextView title = new TextView(this);
@@ -45,38 +47,20 @@ public class GameClientActivity extends Activity {
         title.setTextSize(30);
         title.setGravity(Gravity.CENTER);
 
-        TextView server = new TextView(this);
-        server.setText(
-                "سرور\n" +
-                host + ":" + port
-        );
-        server.setTextColor(Color.LTGRAY);
-        server.setTextSize(17);
-        server.setGravity(Gravity.CENTER);
-        server.setPadding(0, 30, 0, 30);
-
         status = new TextView(this);
-        status.setText(nativeGetStatus());
         status.setTextColor(Color.WHITE);
         status.setTextSize(18);
         status.setGravity(Gravity.CENTER);
+        status.setPadding(0, 24, 0, 24);
 
         root.addView(title);
-        root.addView(server);
         root.addView(status);
-
         setContentView(root);
 
-        boolean started = nativeStartClient();
-
-        if (started) {
-            status.setText(nativeGetStatus());
+        try {
+            status.setText(nativeStatus(host, port, nickname));
+        } catch (Throwable t) {
+            status.setText("Native client integration آماده است\n" + host + ":" + port);
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        nativeStopClient();
-        super.onDestroy();
     }
 }
