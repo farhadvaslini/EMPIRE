@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "architecture": "arm64-v8a",
+  "files": [
+    {
+      "path": "engine/arm64-v8a/PUT_AUTHORIZED_ENGINE_LIBRARY_HERE.so",
+      "size": 0,
+      "sha256": ""
+    }
+  ]
+}
