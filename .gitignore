@@ -32,3 +32,19 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# GTA client generated files
+client-gta-2.11/.gradle/
+client-gta-2.11/.idea/
+client-gta-2.11/**/build/
+client-gta-2.11/.cxx/
+client-gta-2.11/.externalNativeBuild/
+client-gta-2.11/local.properties
+client-gta-2.11/**/google-services.json
+gta-client-build.log
+
+# GTA client local backups
+client-gta-2.11/*.backup
+client-gta-2.11/*.bak
+client-gta-2.11/build.gradle.kts.backup
+client-gta-2.11/settings.gradle.kts.backup

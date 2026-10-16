@@ -1,0 +1,79 @@
+name: Build EMPIRE GTA Client
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'client-gta-2.11/**'
+      - '.github/workflows/build-gta-client.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout EMPIRE
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install Android SDK, NDK and CMake
+        run: |
+          sdkmanager --install \
+            "platforms;android-36" \
+            "build-tools;36.0.0" \
+            "ndk;26.2.11394342" \
+            "cmake;3.22.1"
+
+      - name: Restore Firebase configuration
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          test -n "$GOOGLE_SERVICES_JSON" || {
+            echo "Missing GOOGLE_SERVICES_JSON secret"
+            exit 1
+          }
+          printf '%s' "$GOOGLE_SERVICES_JSON" > client-gta-2.11/app/google-services.json
+
+      - name: Make Gradle wrapper executable
+        working-directory: client-gta-2.11
+        run: chmod +x gradlew
+
+      - name: Build GTA Client APK
+        id: build_apk
+        working-directory: client-gta-2.11
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon assembleDebug --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/gta-client-build.log"
+
+      - name: Upload Build Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: EMPIRE-GTA-Client-build-log
+          path: gta-client-build.log
+          if-no-files-found: ignore
+
+      - name: Stop if build failed
+        if: steps.build_apk.outcome == 'failure'
+        run: exit 1
+
+      - name: Upload GTA Client APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: EMPIRE-GTA-Client-APK
+          path: client-gta-2.11/app/build/outputs/apk/debug/GTA-2.11-debug.apk
+          if-no-files-found: error
