@@ -4,12 +4,13 @@ plugins {
 
 android {
     namespace 'com.empire.game'
-    compileSdk 35
+    compileSdk 34
+    buildToolsVersion "35.0.0"
 
     defaultConfig {
         applicationId 'com.empire.game'
         minSdk 23
-        targetSdk 35
+        targetSdk 34
         versionCode 1
         versionName '1.0.0'
     }

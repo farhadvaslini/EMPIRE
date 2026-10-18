@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,7 +44,10 @@ public class MainActivity extends Activity {
         getWindow().setStatusBarColor(Color.BLACK);
         getWindow().setNavigationBarColor(Color.BLACK);
 
-        dataDir = new File(getFilesDir(), "empire-data");
+        dataDir = getExternalFilesDir(null);
+        if (dataDir == null) {
+            dataDir = getFilesDir();
+        }
 
         buildUi();
 
@@ -79,6 +83,27 @@ public class MainActivity extends Activity {
         server.setGravity(Gravity.CENTER);
         server.setPadding(0, 10, 0, 25);
 
+        nicknameInput = new EditText(this);
+        nicknameInput.setHint("Nickname");
+        nicknameInput.setTextColor(Color.WHITE);
+        nicknameInput.setHintTextColor(Color.GRAY);
+        nicknameInput.setTextSize(18);
+        nicknameInput.setSingleLine(true);
+        nicknameInput.setGravity(Gravity.CENTER);
+
+        String savedNickname =
+                getSharedPreferences("launcher", MODE_PRIVATE)
+                        .getString("nickname", "");
+        nicknameInput.setText(savedNickname);
+
+        root.addView(
+                nicknameInput,
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        65
+                )
+        );
+
         status = new TextView(this);
         status.setText("در حال بررسی دیتا...");
         status.setTextColor(Color.WHITE);
@@ -94,11 +119,9 @@ public class MainActivity extends Activity {
         progressText.setPadding(0, 0, 0, 25);
 
         play = new Button(this);
-        play.setText("ورود به بازی");
+        play.setText("در حال آماده‌سازی...");
         play.setTextSize(18);
         play.setEnabled(false);
-
-        play.setOnClickListener(v -> openGameClient());
 
         root.addView(title);
         root.addView(subtitle);
@@ -189,7 +212,10 @@ public class MainActivity extends Activity {
 
                     status.setText("دیتا آماده است");
                     progressText.setText("100%");
-                    play.setEnabled(true);
+                    play.setText("در حال اجرای کلاینت...");
+                    play.setEnabled(false);
+
+                    openGameClient();
 
                 });
 
@@ -399,32 +425,30 @@ public class MainActivity extends Activity {
     }
 
     private void openGameClient() {
+        String nickname = nicknameInput.getText().toString().trim();
+
+        if (nickname.isEmpty()) {
+            nickname = "Player";
+        }
+
+        getSharedPreferences("launcher", MODE_PRIVATE)
+                .edit()
+                .putString("nickname", nickname)
+                .apply();
 
         status.setText("در حال اجرای کلاینت...");
         progressText.setText(
                 "EMPIRE GAME • 85.133.205.240:7777"
         );
 
-        Intent intent =
-                new Intent(
-                        MainActivity.this,
-                        top.th1nk.samp.feature.game.GameActivity.class
-                );
-
-        intent.putExtra(
-                "server_host",
-                "85.133.205.240"
+        Intent intent = new Intent(
+                MainActivity.this,
+                top.th1nk.samp.feature.game.GameActivity.class
         );
 
-        intent.putExtra(
-                "server_port",
-                7777
-        );
-
-        intent.putExtra(
-                "nickname",
-                "EMPIRE_Player"
-        );
+        intent.putExtra("server_host", "85.133.205.240");
+        intent.putExtra("server_port", 7777);
+        intent.putExtra("nickname", nickname);
 
         startActivity(intent);
     }
